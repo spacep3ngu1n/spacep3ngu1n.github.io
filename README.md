@@ -5,91 +5,68 @@
 <title>Alexandra &amp; Dennis — December 19, 2026</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,500;1,9..144,400&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,500;0,9..144,600;1,9..144,500&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
-  @import url('https://fonts.googleapis.com/css2?family=Great+Vibes&family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,500;1,9..144,400&family=Inter:wght@400;500;600;700&display=swap');
-
   :root {
-    --cream:      #F4EFE4;
-    --cream-dark: #E8E0CE;
-    --red:        #8B1A1A;
-    --red-mid:    #A52020;
-    --red-light:  #C1272D;
-    --ink:        #1A0A0A;
-    --ink-soft:   #3D2020;
-    --gold:       #C9A84C;
-    --gold-soft:  #E8D5A0;
-    --white:      #FDFCF9;
+    --ink: #0F2436;
+    --ink-deep: #081621;
+    --foam: #FBFAF6;
+    --red: #C1272D;
+    --red-deep: #9B1F24;
+    --black: #14181B;
+    --mist: #9FC1D1;
+    --mist-soft: #D9E7ED;
   }
-
   *, *::before, *::after { box-sizing: border-box; }
   html { scroll-behavior: smooth; }
   body {
     margin: 0;
     font-family: 'Inter', sans-serif;
-    background: var(--cream);
-    color: var(--ink);
+    background: var(--foam);
+    color: var(--black);
     -webkit-font-smoothing: antialiased;
   }
   h1, h2, h3 { font-family: 'Fraunces', serif; margin: 0; font-weight: 500; }
-  p { margin: 0; line-height: 1.7; }
+  p { margin: 0; line-height: 1.6; }
   a { color: inherit; }
   button { font-family: 'Inter', sans-serif; cursor: pointer; }
-
-  .script { font-family: 'Great Vibes', cursive; }
   .eyebrow {
-    font-size: .7rem;
-    letter-spacing: .24em;
+    font-size: .72rem;
+    letter-spacing: .22em;
     text-transform: uppercase;
     font-weight: 600;
-    color: var(--red);
   }
-
-  /* snowflakes */
-  .snowflakes { pointer-events:none; position:absolute; inset:0; overflow:hidden; }
-  .sf {
-    position:absolute; top:-20px; color:rgba(255,255,255,0.55);
-    font-size:1rem; animation: fall linear infinite;
-  }
-  @keyframes fall { to { transform: translateY(110vh) rotate(360deg); } }
-  @media (prefers-reduced-motion: reduce) { .sf { animation: none; opacity:0; } }
-
-  a:focus-visible, button:focus-visible, input:focus-visible,
-  select:focus-visible, textarea:focus-visible {
+  a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible, textarea:focus-visible {
     outline: 2px solid var(--red);
     outline-offset: 3px;
   }
 
-  /* ── GATE ── */
+  /* ---- GATE ---- */
   #gate {
     position: fixed; inset: 0; z-index: 100;
-    background: var(--cream);
+    background: radial-gradient(120% 120% at 50% 0%, #163653 0%, var(--ink) 45%, var(--ink-deep) 100%);
     display: flex; align-items: center; justify-content: center; padding: 24px;
   }
   .gate-card {
-    background: var(--white); border-radius: 2px; max-width: 440px; width: 100%;
-    padding: 52px 40px 44px; text-align: center;
-    border: 1px solid var(--cream-dark);
-    box-shadow: 0 8px 40px rgba(139,26,26,.1);
+    background: var(--foam); border-radius: 4px; max-width: 420px; width: 100%;
+    padding: 48px 36px 40px; text-align: center; box-shadow: 0 30px 60px rgba(0,0,0,.4);
   }
-  .gate-script { font-family:'Great Vibes',cursive; font-size:3rem; color:var(--red); line-height:1; margin-bottom:6px; }
-  .gate-card .eyebrow { margin-bottom: 8px; display: block; }
-  .gate-card p.sub { color: var(--ink-soft); font-size: .9rem; margin-bottom: 30px; line-height:1.6; }
-  .gate-divider { width:60px; height:1px; background:var(--gold); margin:0 auto 22px; }
+  .gate-monogram { font-family: 'Fraunces', serif; font-style: italic; font-size: 2.6rem; color: var(--ink); margin-bottom: 4px; }
+  .gate-card .eyebrow { color: var(--red-deep); margin-bottom: 16px; display: block; }
+  .gate-card p.sub { color: #4a5763; font-size: .92rem; margin-bottom: 28px; }
   #gate-form { display: flex; flex-direction: column; gap: 12px; }
   #gate-pw {
-    padding: 13px 16px; border: 1px solid var(--cream-dark); border-radius: 2px;
-    font-size: 1rem; background: var(--cream); letter-spacing: .08em; text-align: center;
-    color: var(--ink);
+    padding: 13px 16px; border: 1px solid #cfd7dc; border-radius: 3px;
+    font-size: 1rem; background: #fff; letter-spacing: .05em; text-align: center;
   }
   #gate-submit {
-    padding: 13px 16px; border: 1px solid var(--red); border-radius: 2px;
-    background: var(--red); color: var(--white);
-    font-weight: 600; letter-spacing: .1em; font-size: .82rem; text-transform: uppercase;
-    transition: background .2s, border-color .2s;
+    padding: 13px 16px; border: none; border-radius: 3px;
+    background: var(--red); color: var(--foam);
+    font-weight: 600; letter-spacing: .06em; font-size: .9rem; text-transform: uppercase;
+    transition: background .2s;
   }
-  #gate-submit:hover { background: var(--red-mid); border-color: var(--red-mid); }
-  .gate-error { color: var(--red); font-size: .83rem; min-height: 18px; margin-top: 4px; }
+  #gate-submit:hover { background: var(--red-deep); }
+  .gate-error { color: var(--red-deep); font-size: .85rem; min-height: 18px; margin-top: 2px; }
   .shake { animation: shake .4s; }
   @keyframes shake {
     10%,90% { transform: translateX(-2px); }
@@ -98,52 +75,44 @@
     40%,60% { transform: translateX(7px); }
   }
 
-  /* ── LAYOUT ── */
+  /* ---- LAYOUT ---- */
   #site { display: none; }
-  section { padding: 88px 24px; }
+  section { padding: 96px 24px; }
   .wrap { max-width: 880px; margin: 0 auto; }
 
-  /* ── HERO ── */
+  /* ---- HERO ---- */
   #hero {
     min-height: 100vh;
-    background: var(--cream);
-    color: var(--ink);
+    background: radial-gradient(120% 90% at 50% -10%, #1c4264 0%, var(--ink) 55%, var(--ink-deep) 100%);
+    color: var(--foam);
     display: flex; flex-direction: column; align-items: center; justify-content: center;
     text-align: center; position: relative; overflow: hidden; padding: 48px 24px 96px;
-    border-bottom: 1px solid var(--cream-dark);
   }
-  #hero .eyebrow { margin-bottom: 18px; }
-  #hero .hero-script {
-    font-family: 'Great Vibes', cursive;
-    font-size: clamp(3.5rem, 11vw, 7rem);
-    color: var(--red);
-    line-height: 1.1;
-    margin-bottom: 4px;
-  }
-  #hero .hero-script .amp { color: var(--gold); font-size: .85em; }
+  #hero .eyebrow { color: var(--mist); margin-bottom: 22px; }
+  #hero h1 { font-size: clamp(2.6rem,7vw,5.2rem); line-height: 1.05; margin-bottom: 8px; }
+  #hero h1 .amp { font-style: italic; color: var(--red); padding: 0 .15em; }
   #hero .tying {
     font-family: 'Fraunces', serif; font-style: italic;
-    font-size: clamp(.95rem, 2vw, 1.2rem); color: var(--ink-soft); margin-bottom: 36px;
+    font-size: clamp(1rem,2vw,1.3rem); color: var(--mist-soft); margin-bottom: 36px;
   }
-  .penguins { width: min(72vw, 300px); margin-bottom: 32px; }
-  @keyframes bob { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-6px); } }
+  .penguins { width: min(78vw, 340px); margin-bottom: 32px; }
+  @keyframes bob { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-7px); } }
   .bob  { animation: bob 4.5s ease-in-out infinite; }
   .bob2 { animation: bob 4.5s ease-in-out infinite; animation-delay: .7s; }
   @media (prefers-reduced-motion: reduce) { .bob, .bob2 { animation: none; } }
   .hero-date {
-    font-size: .78rem; letter-spacing: .18em; text-transform: uppercase; color: var(--ink-soft);
+    font-size: .8rem; letter-spacing: .16em; text-transform: uppercase; color: var(--foam);
     display: flex; flex-wrap: wrap; gap: 10px; justify-content: center; align-items: center;
-    margin-bottom: 10px;
   }
   .hero-date .dot { color: var(--red); }
   .scroll-cue {
-    position: absolute; bottom: 32px; left: 50%; transform: translateX(-50%);
-    font-size: .66rem; letter-spacing: .2em; text-transform: uppercase; color: var(--red);
+    position: absolute; bottom: 34px; left: 50%; transform: translateX(-50%);
+    font-size: .68rem; letter-spacing: .2em; text-transform: uppercase; color: var(--mist);
     display: flex; flex-direction: column; align-items: center; gap: 8px;
   }
   .chev {
     width: 9px; height: 9px;
-    border-right: 1.5px solid var(--red); border-bottom: 1.5px solid var(--red);
+    border-right: 1.5px solid var(--mist); border-bottom: 1.5px solid var(--mist);
     transform: rotate(45deg); animation: chevbob 2s ease-in-out infinite;
   }
   @keyframes chevbob {
@@ -152,160 +121,175 @@
   }
   @media (prefers-reduced-motion: reduce) { .chev { animation: none; } }
 
-  /* gold rule divider */
-  .gold-rule {
-    display:flex; align-items:center; justify-content:center; gap:14px;
-    margin: 0 auto 48px; width: fit-content;
-  }
-  .gold-rule .line { width: 60px; height: 1px; background: var(--gold); }
-  .gold-rule .star { color: var(--gold); font-size: .9rem; }
-
-  /* ── DETAILS ── */
-  #details { background: var(--white); border-top: 1px solid var(--cream-dark); border-bottom: 1px solid var(--cream-dark); }
-  #details .head { text-align: center; margin-bottom: 48px; }
-  #details .head h2 { font-size: clamp(1.7rem,3.5vw,2.4rem); color: var(--red); }
+  /* ---- DETAILS ---- */
+  #details { background: var(--foam); }
+  #details .head { text-align: center; margin-bottom: 56px; }
+  #details .head .eyebrow { color: var(--red-deep); margin-bottom: 10px; }
+  #details .head h2 { font-size: clamp(1.8rem,4vw,2.6rem); color: var(--ink); }
   .cards {
     display: grid; grid-template-columns: repeat(3,1fr);
-    border-top: 1px solid var(--cream-dark); border-bottom: 1px solid var(--cream-dark);
+    border-top: 1px solid #e2ddd2; border-bottom: 1px solid #e2ddd2;
   }
-  .card { padding: 36px 24px; text-align: center; border-left: 1px solid var(--cream-dark); }
+  .card { padding: 34px 22px; text-align: center; border-left: 1px solid #e2ddd2; }
   .card:first-child { border-left: none; }
-  .card svg { width: 30px; height: 30px; margin-bottom: 16px; color: var(--red); }
-  .card h3 { font-size: 1.05rem; color: var(--ink); margin-bottom: 10px; font-family:'Fraunces',serif; }
-  .card p { font-size: .88rem; color: var(--ink-soft); }
+  .card svg { width: 32px; height: 32px; margin-bottom: 16px; color: var(--red); }
+  .card h3 { font-size: 1.1rem; color: var(--ink); margin-bottom: 10px; }
+  .card p { font-size: .9rem; color: #4a5763; }
   @media (max-width: 700px) {
     .cards { grid-template-columns: 1fr; }
-    .card { border-left: none; border-top: 1px solid var(--cream-dark); }
+    .card { border-left: none; border-top: 1px solid #e2ddd2; }
     .card:first-child { border-top: none; }
   }
 
-  /* ── PHOTOS ── */
-  #photos { background: var(--cream); padding: 80px 24px; }
+  /* ---- PHOTOS ---- */
+  #photos { background: var(--ink); padding: 80px 24px; }
   #photos .head { text-align: center; margin-bottom: 48px; }
-  #photos .head h2 { color: var(--red); font-size: clamp(1.6rem,3.5vw,2.2rem); }
-  #photos .head .script-sub {
-    font-family:'Great Vibes',cursive; font-size:1.6rem; color:var(--gold); display:block; margin-top:4px;
-  }
+  #photos .head .eyebrow { color: var(--mist); margin-bottom: 10px; }
+  #photos .head h2 { color: var(--foam); font-size: clamp(1.6rem,3.5vw,2.2rem); }
   .photo-grid {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    gap: 10px;
+    grid-template-rows: auto auto;
+    gap: 12px;
     max-width: 860px;
     margin: 0 auto;
   }
-  .photo-slot { border-radius: 2px; overflow: hidden; background: var(--cream-dark); position: relative; aspect-ratio: 4/3; }
-  .photo-slot.wide { grid-column: span 2; aspect-ratio: 16/9; }
-  .photo-slot.full { grid-column: span 3; aspect-ratio: 21/9; }
-  .photo-slot img { width:100%; height:100%; object-fit:cover; display:block; transition:transform .4s ease; }
+  .photo-slot {
+    border-radius: 3px;
+    overflow: hidden;
+    background: #1a3a52;
+    position: relative;
+    aspect-ratio: 4/3;
+  }
+  .photo-slot.full {
+    grid-column: span 3;
+    aspect-ratio: 16/7;
+  }
+  .photo-slot.wide {
+    grid-column: span 2;
+    aspect-ratio: 16/9;
+  }
+  .photo-slot img {
+    width: 100%; height: 100%;
+    object-fit: cover; display: block;
+    transition: transform .4s ease;
+  }
   .photo-slot:hover img { transform: scale(1.03); }
   .photo-slot .placeholder {
-    position:absolute; inset:0; display:flex; flex-direction:column;
-    align-items:center; justify-content:center;
-    color:var(--ink-soft); font-size:.76rem; letter-spacing:.1em; text-transform:uppercase; gap:10px;
+    position: absolute; inset: 0;
+    display: flex; flex-direction: column; align-items: center; justify-content: center;
+    color: var(--mist); font-size: .78rem; letter-spacing: .1em; text-transform: uppercase; gap: 10px;
   }
-  .photo-slot .placeholder svg { width:26px; height:26px; opacity:.4; }
+  .photo-slot .placeholder svg { width: 28px; height: 28px; opacity: .5; }
   @media (max-width: 600px) {
     .photo-grid { grid-template-columns: 1fr 1fr; }
-    .photo-slot.wide { grid-column: span 2; }
-    .photo-slot.full { grid-column: span 2; }
+    .photo-slot.full {
+    grid-column: span 3;
+    aspect-ratio: 16/7;
+  }
+  .photo-slot.wide { grid-column: span 2; }
   }
 
-  /* ── VENUE ── */
-  #venue { background: var(--red); color: var(--white); text-align: center; }
-  #venue .eyebrow { color: var(--gold-soft); margin-bottom: 14px; }
-  #venue h2 { font-size: clamp(1.7rem,4vw,2.4rem); margin-bottom: 10px; color:var(--white); }
-  #venue .addr { color: var(--gold-soft); font-size: .9rem; margin-bottom: 6px; }
-  #venue .note { max-width: 480px; margin: 18px auto 32px; color: rgba(255,255,255,.82); font-size: .9rem; }
+  /* ---- VENUE ---- */
+  #venue {
+    background: linear-gradient(180deg, #112c42 0%, var(--ink-deep) 100%);
+    color: var(--foam); text-align: center;
+  }
+  #venue .eyebrow { color: var(--mist); margin-bottom: 14px; }
+  #venue h2 { font-size: clamp(1.7rem,4vw,2.4rem); margin-bottom: 12px; }
+  #venue .addr { color: var(--mist-soft); font-size: .94rem; margin-bottom: 6px; }
+  #venue .note { max-width: 480px; margin: 18px auto 32px; color: #cfe1ea; font-size: .92rem; }
   .btn {
-    display: inline-block; padding: 12px 28px; border-radius: 2px; text-decoration: none;
-    font-size: .78rem; letter-spacing: .12em; text-transform: uppercase; font-weight: 600;
-    border: 1px solid var(--gold-soft); color: var(--white); transition: all .2s ease;
+    display: inline-block; padding: 13px 28px; border-radius: 3px; text-decoration: none;
+    font-size: .8rem; letter-spacing: .1em; text-transform: uppercase; font-weight: 600;
+    border: 1px solid var(--mist); color: var(--foam); transition: all .2s ease;
   }
-  .btn:hover { background: var(--gold-soft); color: var(--red); }
+  .btn:hover { background: var(--mist); color: var(--ink); }
+  .btn-solid { background: var(--red); border-color: var(--red); color: var(--foam); }
+  .btn-solid:hover { background: var(--red-deep); border-color: var(--red-deep); }
 
-  /* ── GIFT ── */
-  #gift { background: var(--white); }
+  /* ---- GIFT ---- */
+  #gift { background: var(--foam); }
   .gift-card {
     max-width: 560px; margin: 0 auto; text-align: center;
-    background: var(--cream); border: 1px solid var(--cream-dark); border-radius: 2px; padding: 44px 36px;
+    background: #fff; border: 1px solid #e2ddd2; border-radius: 4px; padding: 44px 36px;
   }
-  .gift-card svg { width: 28px; height: 28px; color: var(--red); margin-bottom: 16px; }
-  .gift-card h3 { font-size: 1.25rem; color: var(--red); margin-bottom: 14px; font-family:'Fraunces',serif; }
-  .gift-card p { font-size: .92rem; color: var(--ink-soft); }
+  .gift-card svg { width: 30px; height: 30px; color: var(--red); margin-bottom: 16px; }
+  .gift-card h3 { font-size: 1.3rem; color: var(--ink); margin-bottom: 14px; }
+  .gift-card p { font-size: .94rem; color: #4a5763; }
 
-  /* ── RSVP ── */
-  #rsvp { background: var(--cream); }
+  /* ---- RSVP ---- */
+  #rsvp { background: linear-gradient(180deg, #0c2030 0%, var(--ink-deep) 100%); color: var(--foam); }
   #rsvp .head { text-align: center; margin-bottom: 14px; }
-  #rsvp .head h2 { font-size: clamp(1.8rem,4vw,2.6rem); margin: 8px 0 10px; color: var(--red); }
-  #rsvp .deadline { text-align: center; color: var(--ink-soft); font-size: .88rem; margin-bottom: 40px; }
+  #rsvp .head .eyebrow { color: var(--mist); }
+  #rsvp .head h2 { font-size: clamp(1.8rem,4vw,2.6rem); margin: 10px 0 12px; }
+  #rsvp .deadline { text-align: center; color: #cfe1ea; font-size: .9rem; margin-bottom: 42px; }
   .form-card {
     max-width: 600px; margin: 0 auto;
-    background: var(--white); color: var(--ink); border-radius: 2px;
-    padding: 40px 32px; border: 1px solid var(--cream-dark);
+    background: var(--foam); color: var(--black); border-radius: 4px; padding: 38px 32px;
   }
   .field { margin-bottom: 22px; }
   .field label {
-    display: block; font-size: .73rem; letter-spacing: .09em; text-transform: uppercase;
-    font-weight: 600; color: var(--ink-soft); margin-bottom: 8px;
+    display: block; font-size: .76rem; letter-spacing: .07em; text-transform: uppercase;
+    font-weight: 600; color: #3a4753; margin-bottom: 8px;
   }
   .field input[type=text], .field select, .field textarea {
-    width: 100%; padding: 12px 14px; border: 1px solid var(--cream-dark); border-radius: 2px;
-    font-size: .94rem; font-family: 'Inter', sans-serif; background: var(--cream); color: var(--ink);
+    width: 100%; padding: 12px 14px; border: 1px solid #cfd7dc; border-radius: 3px;
+    font-size: .96rem; font-family: 'Inter', sans-serif; background: #fff; color: var(--black);
   }
   .field textarea { resize: vertical; min-height: 80px; }
-  .radio-row { display: flex; gap: 10px; flex-wrap: wrap; }
+  .radio-row { display: flex; gap: 12px; flex-wrap: wrap; }
   .radio-pill {
-    flex: 1; min-width: 150px; border: 1px solid var(--cream-dark); border-radius: 2px;
+    flex: 1; min-width: 150px; border: 1px solid #cfd7dc; border-radius: 3px;
     padding: 12px 14px; display: flex; align-items: center; gap: 10px;
-    cursor: pointer; font-size: .9rem; background: var(--cream);
-    transition: border-color .15s, background .15s;
+    cursor: pointer; font-size: .92rem; transition: border-color .15s, background .15s;
   }
   .radio-pill input { accent-color: var(--red); }
-  .radio-pill.checked { border-color: var(--red); background: #f9eded; }
+  .radio-pill.checked { border-color: var(--red); background: #fdf0ee; }
   .conditional { display: none; }
   .conditional.show { display: block; }
   #rsvp-submit {
-    width: 100%; padding: 15px; border: 1px solid var(--red); border-radius: 2px;
-    background: var(--red); color: var(--white);
-    font-weight: 600; letter-spacing: .1em; text-transform: uppercase; font-size: .84rem;
-    transition: background .2s, border-color .2s;
+    width: 100%; padding: 15px; border: none; border-radius: 3px;
+    background: var(--red); color: var(--foam);
+    font-weight: 600; letter-spacing: .06em; text-transform: uppercase; font-size: .9rem;
+    transition: background .2s;
   }
-  #rsvp-submit:hover { background: var(--red-mid); border-color: var(--red-mid); }
+  #rsvp-submit:hover { background: var(--red-deep); }
   #rsvp-submit:disabled { opacity: .6; cursor: default; }
-  .rsvp-status { text-align: center; font-size: .84rem; margin-top: 14px; min-height: 18px; }
+  .rsvp-status { text-align: center; font-size: .85rem; margin-top: 14px; min-height: 18px; }
   .rsvp-status.error { color: var(--red); }
-  .rsvp-status.ok { color: #2a7a4e; }
-  .confirm { display: none; text-align: center; padding: 28px 6px; }
+  .rsvp-status.ok { color: #62c98a; }
+  .confirm { display: none; text-align: center; padding: 24px 6px; }
   .confirm.show { display: block; }
-  .confirm .confirm-script { font-family:'Great Vibes',cursive; font-size:3rem; color:var(--red); margin-bottom:10px; }
-  .confirm h3 { font-size: 1.3rem; margin-bottom: 10px; color: var(--ink); }
-  .confirm p { color: var(--ink-soft); font-size: .92rem; }
+  .confirm svg { width: 48px; height: 48px; color: var(--red); margin-bottom: 14px; }
+  .confirm h3 { font-size: 1.4rem; margin-bottom: 10px; color: var(--ink); }
+  .confirm p { color: #4a5763; font-size: .95rem; }
 
-  /* ── FOOTER ── */
-  footer { background: var(--red); color: rgba(255,255,255,.85); text-align: center; padding: 52px 24px 40px; }
-  footer .footer-script { font-family:'Great Vibes',cursive; font-size:2.4rem; color:var(--gold-soft); margin-bottom:10px; }
-  footer .fine { font-size: .76rem; color: rgba(255,255,255,.65); }
-  footer .gold-line { width:50px; height:1px; background:var(--gold-soft); margin:14px auto; }
+  /* ---- FOOTER ---- */
+  footer { background: var(--ink-deep); color: var(--mist-soft); text-align: center; padding: 52px 24px 40px; }
+  footer .mark { width: 32px; height: 32px; margin: 0 auto 14px; color: var(--red); }
+  footer .names { font-family: 'Fraunces', serif; font-style: italic; font-size: 1.15rem; color: var(--foam); margin-bottom: 8px; }
+  footer .fine { font-size: .76rem; color: #7c95a3; }
 
-  /* ── REVEAL ── */
-  .reveal { opacity: 0; transform: translateY(16px); transition: opacity .7s ease, transform .7s ease; }
+  /* ---- REVEAL ---- */
+  .reveal { opacity: 0; transform: translateY(18px); transition: opacity .7s ease, transform .7s ease; }
   .reveal.in { opacity: 1; transform: none; }
   @media (prefers-reduced-motion: reduce) { .reveal { opacity: 1; transform: none; transition: none; } }
 
-  /* ── ADMIN ── */
-  #admin { display: none; background: var(--cream); min-height: 100vh; padding: 60px 24px; }
+  /* ---- ADMIN ---- */
+  #admin { display: none; background: var(--foam); min-height: 100vh; padding: 60px 24px; }
   #admin .wrap { max-width: 1060px; }
-  #admin h1 { color: var(--red); font-size: 1.8rem; margin-bottom: 6px; }
-  #admin .sub { color: var(--ink-soft); font-size: .9rem; margin-bottom: 28px; }
-  #admin table { width: 100%; border-collapse: collapse; font-size: .86rem; background: var(--white); }
-  #admin th, #admin td { border: 1px solid var(--cream-dark); padding: 10px 12px; text-align: left; vertical-align: top; }
-  #admin th { background: var(--red); color: var(--white); font-weight: 600; text-transform: uppercase; font-size: .7rem; letter-spacing: .06em; }
+  #admin h1 { color: var(--ink); font-size: 1.8rem; margin-bottom: 6px; }
+  #admin .sub { color: #4a5763; font-size: .9rem; margin-bottom: 28px; }
+  #admin table { width: 100%; border-collapse: collapse; font-size: .86rem; background: #fff; }
+  #admin th, #admin td { border: 1px solid #e2ddd2; padding: 10px 12px; text-align: left; vertical-align: top; }
+  #admin th { background: var(--ink); color: var(--foam); font-weight: 600; text-transform: uppercase; font-size: .7rem; letter-spacing: .06em; }
   #admin .toolbar { display: flex; gap: 12px; margin-bottom: 20px; }
-  #admin .toolbar button { padding: 10px 18px; border: 1px solid var(--red); background: var(--white); border-radius: 2px; font-size: .82rem; color:var(--red); }
-  #admin .toolbar button:hover { background: var(--red); color: var(--white); }
-  #admin .empty { color: var(--ink-soft); font-style: italic; padding: 30px 0; }
+  #admin .toolbar button { padding: 10px 18px; border: 1px solid var(--ink); background: #fff; border-radius: 3px; font-size: .82rem; }
+  #admin .toolbar button:hover { background: var(--ink); color: #fff; }
+  #admin .empty { color: #7c8a93; font-style: italic; padding: 30px 0; }
   .badge-yes { color: #2a7a4e; font-weight: 600; }
-  .badge-no { color: var(--ink-soft); }
+  .badge-no { color: #7c8a93; }
 </style>
 </head>
 <body>
@@ -313,8 +297,8 @@
 <!-- PASSWORD GATE -->
 <div id="gate">
   <div class="gate-card" id="gate-card">
-    <div class="gate-script">Allie &amp; Dennis</div>
-    <div class="gate-divider"></div><span class="eyebrow">This invitation is private</span>
+    <div class="gate-monogram">A &amp; D</div>
+    <span class="eyebrow">This invitation is private</span>
     <p class="sub">Please enter the password from your invitation to continue.</p>
     <form id="gate-form" onsubmit="return false;">
       <input type="password" id="gate-pw" placeholder="Password" autocomplete="off">
@@ -342,8 +326,7 @@
   <!-- HERO -->
   <section id="hero">
     <span class="eyebrow">Together with their families</span>
-    <div class="snowflakes" aria-hidden="true" id="snowflakes"></div>
-    <div class="hero-script script">Allie <span class="amp">&amp;</span> Dennis</div>
+    <h1>Alexandra <span class="amp">&amp;</span> Dennis</h1>
     <p class="tying">are tying the knot</p>
 
     <!-- Penguin SVG -->
@@ -414,7 +397,7 @@
         <div class="card">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3.5 2"/></svg>
           <h3>Ceremony</h3>
-          <p>4:30 in the afternoon<br>Saint Francis Yacht Club</p>
+          <p>4:00 in the afternoon<br>Saint Francis Yacht Club</p>
         </div>
         <div class="card">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M8 3H5a2 2 0 00-2 2v3m18 0V5a2 2 0 00-2-2h-3M3 16v3a2 2 0 002 2h3m8 0h3a2 2 0 002-2v-3"/></svg>
@@ -436,7 +419,6 @@
       <div class="head reveal">
         <span class="eyebrow">A &amp; D</span>
         <h2>Our Story</h2>
-        <span class="script-sub script">a few of our favourite moments</span>
       </div>
       <div class="photo-grid reveal">
         <!-- Row 1: lake kiss wide + engagement portrait -->
@@ -460,9 +442,9 @@
     <div class="wrap reveal">
       <span class="eyebrow">The Venue</span>
       <h2>Saint Francis Yacht Club</h2>
-      <p class="addr">99 Yacht Rd, San Francisco, CA 94123</p>
+      <p class="addr">700 Marina Blvd, San Francisco, CA 94123</p>
       <p class="note">Perched on the edge of the bay with the Golden Gate as a backdrop. December evenings on the water have a way of finding their way through a coat — dress warm and come ready to celebrate.</p>
-      <a class="btn btn-solid" href="https://maps.google.com/?q=99+Yacht+Rd,+San+Francisco,+CA+94123" target="_blank" rel="noopener">Get Directions</a>
+      <a class="btn btn-solid" href="https://maps.google.com/?q=700+Marina+Blvd,+San+Francisco,+CA+94123" target="_blank" rel="noopener">Get Directions</a>
     </div>
   </section>
 
@@ -510,14 +492,14 @@
               <label for="r-meal">Meal Choice</label>
               <select id="r-meal">
                 <option value="">Select one</option>
-                <option>Seared Feta Chicken (GF) — Whipped Potato, Feta, Olive &amp; Tomato Relish, Seasonal Vegetables</option>
-                <option>Seared Ora King Salmon (GF) — Herbs, Parsnip Puree, Asparagus, Chive Beurre Blanc</option>
-                <option>Child's Meal — Chicken Tenders &amp; Fries</option>
+                <option>Filet Mignon</option>
+                <option>Pan-Seared Salmon</option>
+                <option>Vegetable Wellington (Vegetarian)</option>
               </select>
             </div>
             <div class="field">
-              <label for="r-dietary">Allergies &amp; Dietary Restrictions</label>
-              <textarea id="r-dietary" placeholder="Please list any allergies or dietary restrictions so we can make sure you're taken care of"></textarea>
+              <label for="r-dietary">Dietary Restrictions or Allergies</label>
+              <textarea id="r-dietary" placeholder="Let us know about any allergies or dietary needs"></textarea>
             </div>
           </div>
 
@@ -531,7 +513,7 @@
         </form>
 
         <div class="confirm" id="rsvp-confirm">
-          <div class="confirm-script script">Thank you!</div>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M22 11.08V12a10 10 0 11-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
           <h3 id="confirm-title">We can't wait to celebrate with you!</h3>
           <p id="confirm-sub">Thank you for letting us know.</p>
         </div>
@@ -541,9 +523,9 @@
 
   <!-- FOOTER -->
   <footer>
-    <div class="footer-script script">Allie &amp; Dennis</div>
-    <div class="gold-line"></div>
-    <p class="fine">December 19, 2026 &middot; Saint Francis Yacht Club &middot; San Francisco</p>
+    <svg class="mark" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78L12 21.23l8.84-8.84a5.5 5.5 0 000-7.78z"/></svg>
+    <div class="names">Alexandra &amp; Dennis</div>
+    <p class="fine">December 19, 2026 &middot; Saint Francis Yacht Club, San Francisco</p>
     <p class="fine" style="margin-top:10px;">This page is private — please don't share the link outside your invitation.</p>
   </footer>
 
@@ -707,24 +689,6 @@
   }
 
   document.getElementById('admin-refresh').addEventListener('click', loadAdmin);
-
-  // ---- Snowflakes ----
-  (function(){
-    const container = document.getElementById('snowflakes');
-    if(!container) return;
-    const chars = ['❄','❅','❆','✦','·'];
-    for(let i=0;i<18;i++){
-      const el = document.createElement('span');
-      el.className='sf';
-      el.textContent = chars[Math.floor(Math.random()*chars.length)];
-      el.style.left = Math.random()*100+'%';
-      el.style.fontSize = (.6+Math.random()*.9)+'rem';
-      el.style.opacity = .3+Math.random()*.5;
-      el.style.animationDuration = (8+Math.random()*14)+'s';
-      el.style.animationDelay = (-Math.random()*14)+'s';
-      container.appendChild(el);
-    }
-  })();
 </script>
 </body>
 </html>

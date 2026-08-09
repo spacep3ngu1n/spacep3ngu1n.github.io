@@ -1,4 +1,3 @@
-<!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
@@ -325,7 +324,7 @@
     <div class="gate-divider"></div><span class="eyebrow">This invitation is private</span>
     <p class="sub">Please enter the PIN from your invitation to continue.</p>
     <form id="gate-form" onsubmit="return false;">
-      <input type="number" id="gate-pw" placeholder="Enter PIN" autocomplete="off">
+      <input type="text" id="gate-pw" placeholder="Enter PIN" autocomplete="off" inputmode="numeric" pattern="[0-9]*">
       <button type="button" id="gate-submit">Unlock</button>
       <div class="gate-error" id="gate-error"></div>
     </form>

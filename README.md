@@ -79,7 +79,7 @@
   #gate-form { display: flex; flex-direction: column; gap: 12px; }
   #gate-pw {
     padding: 13px 16px; border: 1px solid var(--cream-dark); border-radius: 2px;
-    font-size: 1rem; background: var(--cream); letter-spacing: .08em; text-align: center;
+    font-size: 1.4rem; background: var(--cream); letter-spacing: .3em; text-align: center;
     color: var(--ink);
   }
   #gate-submit {
@@ -322,9 +322,9 @@
   <div class="gate-card" id="gate-card">
     <div class="gate-script">Allie &amp; Dennis</div>
     <div class="gate-divider"></div><span class="eyebrow">This invitation is private</span>
-    <p class="sub">Please enter the password from your invitation to continue.</p>
+    <p class="sub">Please enter the PIN from your invitation to continue.</p>
     <form id="gate-form" onsubmit="return false;">
-      <input type="password" id="gate-pw" placeholder="Password" autocomplete="off">
+      <input type="number" id="gate-pw" placeholder="Enter PIN" autocomplete="off">
       <button type="button" id="gate-submit">Unlock</button>
       <div class="gate-error" id="gate-error"></div>
     </form>
@@ -549,8 +549,8 @@
 </div><!-- /site -->
 
 <script>
-  const GUEST_PW = 'danda191226';
-  const ADMIN_PW = GUEST_PW + '-admin';
+  const GUEST_PW = '191226';
+  const ADMIN_PW = '191226-admin';
 
   // ---- Gate ----
   const gate     = document.getElementById('gate');

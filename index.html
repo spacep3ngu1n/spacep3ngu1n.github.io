@@ -324,7 +324,7 @@
     <div class="gate-divider"></div><span class="eyebrow">This invitation is private</span>
     <p class="sub">Please enter the PIN from your invitation to continue.</p>
     <form id="gate-form" onsubmit="return false;">
-      <input type="text" id="gate-pw" placeholder="Enter PIN" autocomplete="off" inputmode="numeric" pattern="[0-9]*">
+      <input type="text" id="gate-pw" placeholder="Enter PIN" autocomplete="off" inputmode="numeric" pattern="[0-9]*" maxlength="6">
       <button type="button" id="gate-submit">Unlock</button>
       <div class="gate-error" id="gate-error"></div>
     </form>
@@ -410,6 +410,7 @@
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3.5 2"/></svg>
           <h3>Ceremony</h3>
           <p>4:30 in the afternoon<br>St Francis Yacht Club</p>
+          <p style="font-size:.78rem;color:var(--red);opacity:.75;margin-top:8px;font-style:italic;">Guests kindly invited to arrive by 4:15</p>
         </div>
         <div class="card">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M8 3H5a2 2 0 00-2 2v3m18 0V5a2 2 0 00-2-2h-3M3 16v3a2 2 0 002 2h3m8 0h3a2 2 0 002-2v-3"/></svg>
@@ -460,8 +461,7 @@
                 <option value="">Select one</option>
                 <option>Seared Feta Chicken (GF) — Whipped Potato, Feta, Olive &amp; Tomato Relish, Seasonal Vegetables</option>
                 <option>Seared Ora King Salmon (GF) — Herbs, Parsnip Puree, Asparagus, Chive Beurre Blanc</option>
-                <option>Mushroom Risotto (GF) — Vegetarian</option>
-                <option>Child's Meal — Chicken Tenders &amp; Fries</option>
+                <option>Mushroom Risotto (GF) — Assorted Mushrooms, Mushroom Stock &amp; Tarragon, Vegetarian</option>
               </select>
             </div>
             <div class="field">

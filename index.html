@@ -418,9 +418,26 @@
   .reveal-bm { opacity:0; transform:translateY(16px); transition:opacity .7s ease, transform .7s ease; }
   .reveal-bm.in { opacity:1; transform:none; }
 
+
+  /* ── HOME BUTTON ── */
+  .home-btn {
+    position: fixed; top: 16px; right: 16px; z-index: 200;
+    display: none;
+    background: rgba(0,0,0,.35); backdrop-filter: blur(6px);
+    border: 1px solid rgba(255,255,255,.2); border-radius: 2px;
+    color: #fff; font-family: 'Inter', sans-serif;
+    font-size: .72rem; letter-spacing: .12em; text-transform: uppercase;
+    font-weight: 600; padding: 8px 14px; cursor: pointer;
+    transition: background .2s, border-color .2s;
+  }
+  .home-btn:hover { background: rgba(0,0,0,.6); border-color: rgba(255,255,255,.4); }
+  .home-btn.visible { display: block; }
+
 </style>
 </head>
 <body>
+
+<button class="home-btn" id="home-btn" onclick="goHome()">&#8592; Home</button>
 
 <!-- PASSWORD GATE -->
 <div id="gate">
@@ -671,14 +688,17 @@
     if (val === BRIDE_PW) {
       gate.style.display = 'none';
       document.getElementById('bridesmaids').style.display = 'block';
+      document.getElementById('home-btn').classList.add('visible');
       initBridesmaids();
     } else if (val === GROOM_PW) {
       gate.style.display = 'none';
       document.getElementById('groomsmen').style.display = 'block';
+      document.getElementById('home-btn').classList.add('visible');
       initGroomsmen();
     } else if (val === GUEST_PW) {
       gate.style.display = 'none';
       site.style.display = 'block';
+      document.getElementById('home-btn').classList.add('visible');
       initReveal();
     } else {
       gateErr.textContent = "That's not quite right — check your invitation and try again.";
@@ -781,6 +801,17 @@
     }
   });
 
+
+  // ---- Home button ----
+  function goHome() {
+    document.getElementById('site').style.display        = 'none';
+    document.getElementById('groomsmen').style.display   = 'none';
+    document.getElementById('bridesmaids').style.display = 'none';
+    document.getElementById('gate').style.display        = 'flex';
+    document.getElementById('gate-pw').value             = '';
+    document.getElementById('gate-error').textContent    = '';
+    document.getElementById('home-btn').classList.remove('visible');
+  }
 
   // ---- Bridesmaids page ----
   function initBridesmaids() {

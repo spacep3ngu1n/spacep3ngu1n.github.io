@@ -362,6 +362,62 @@
   .reveal-gm { opacity:0; transform:translateY(16px); transition:opacity .7s ease, transform .7s ease; }
   .reveal-gm.in { opacity:1; transform:none; }
 
+
+  /* ── BRIDESMAIDS PAGE ── */
+  .bm-page { min-height:100vh; background:#0E1810; color:#F4EFE4; font-family:'Inter',sans-serif; }
+
+  .bm-hero {
+    position:relative; text-align:center; padding:0 24px 0;
+    overflow:hidden; border-bottom:1px solid #2D5A3D;
+    background:linear-gradient(180deg, #0a1208 0%, #0E1810 100%);
+  }
+  .bm-vine-svg { position:absolute; top:0; left:0; width:100%; height:100%; opacity:.6; }
+  .bm-hero-content { position:relative; z-index:1; padding:70px 0 20px; }
+  .bm-eyebrow { font-size:.68rem; letter-spacing:.28em; text-transform:uppercase; color:#3D7A50; font-weight:600; display:block; margin-bottom:16px; }
+  .bm-script { font-family:'Great Vibes',cursive; font-size:clamp(3rem,10vw,5.5rem); color:#F4EFE4; line-height:1.1; margin-bottom:10px; }
+  .bm-sub { color:rgba(244,239,228,.6); font-size:.9rem; max-width:380px; margin:0 auto 32px; }
+  .bm-botanical svg { width:130px; height:auto; margin:0 auto; display:block; }
+  .bm-vine-bottom { position:relative; z-index:1; margin-top:-2px; }
+  .bm-vine-bottom svg { width:100%; display:block; }
+
+  .bm-wrap { max-width:720px; margin:0 auto; padding:60px 24px; display:flex; flex-direction:column; gap:28px; }
+
+  .bm-card {
+    background:#111d13; border:1px solid #1e3322; border-radius:4px; padding:36px 32px;
+    position:relative; overflow:hidden;
+  }
+  .bm-card-accent {
+    position:absolute; top:0; left:0; width:3px; height:100%;
+    background:linear-gradient(180deg, #8B1A1A, #2D5A3D, #8B1A1A);
+  }
+  .bm-card-icon { font-size:1.6rem; margin-bottom:14px; }
+  .bm-card h2 { font-family:'Fraunces',serif; font-size:1.5rem; color:#3D7A50; margin:0 0 12px; }
+  .bm-lead { font-size:1rem; font-weight:600; color:#F4EFE4; margin-bottom:10px; }
+  .bm-card p { color:rgba(244,239,228,.7); font-size:.9rem; line-height:1.7; margin:0; }
+
+  .bm-timeline { display:flex; flex-direction:column; gap:28px; margin-top:4px; }
+  .bm-day { display:flex; flex-direction:column; gap:16px; }
+  .bm-day-label {
+    font-size:.68rem; letter-spacing:.18em; text-transform:uppercase;
+    color:#3D7A50; font-weight:600; padding-bottom:10px;
+    border-bottom:1px solid #1e3322;
+  }
+  .bm-event { padding:16px 18px; background:#0a1208; border-radius:3px; border-left:2px solid #1e3322; }
+  .bm-event-highlight { border-left-color:#8B1A1A; }
+  .bm-event-time { font-size:.72rem; letter-spacing:.08em; color:#3D7A50; text-transform:uppercase; margin-bottom:4px; }
+  .bm-event-title { font-weight:600; font-size:.95rem; margin-bottom:4px; color:#F4EFE4; }
+  .bm-event-detail { font-size:.85rem; color:rgba(244,239,228,.55); }
+  .bm-map-link { display:inline-block; margin-top:8px; font-size:.76rem; color:#8B1A1A; text-decoration:none; letter-spacing:.04em; }
+  .bm-map-link:hover { text-decoration:underline; }
+
+  .bm-footer { text-align:center; padding:20px 24px 40px; border-top:1px solid #1e3322; color:rgba(244,239,228,.4); font-size:.78rem; }
+  .bm-vine-footer { margin-bottom:20px; }
+  .bm-vine-footer svg { width:260px; display:block; margin:0 auto; }
+  .bm-footer-script { font-family:'Great Vibes',cursive; font-size:2rem; color:#3D7A50; margin-bottom:8px; }
+
+  .reveal-bm { opacity:0; transform:translateY(16px); transition:opacity .7s ease, transform .7s ease; }
+  .reveal-bm.in { opacity:1; transform:none; }
+
 </style>
 </head>
 <body>
@@ -600,6 +656,7 @@
 <script>
   const GUEST_PW = '191226';
   const GROOM_PW  = '1996';
+  const BRIDE_PW   = '1998';
   const ADMIN_PW = '191226-admin';
 
   // ---- Gate ----
@@ -611,7 +668,11 @@
   const admin    = document.getElementById('admin');
 
   function unlock(val) {
-    if (val === GROOM_PW) {
+    if (val === BRIDE_PW) {
+      gate.style.display = 'none';
+      document.getElementById('bridesmaids').style.display = 'block';
+      initBridesmaids();
+    } else if (val === GROOM_PW) {
       gate.style.display = 'none';
       document.getElementById('groomsmen').style.display = 'block';
       initGroomsmen();
@@ -720,6 +781,18 @@
     }
   });
 
+
+  // ---- Bridesmaids page ----
+  function initBridesmaids() {
+    const items = document.querySelectorAll('.reveal-bm');
+    if (!('IntersectionObserver' in window)) {
+      items.forEach(i => i.classList.add('in')); return;
+    }
+    const obs = new IntersectionObserver(entries => {
+      entries.forEach(en => { if (en.isIntersecting) en.target.classList.add('in'); });
+    }, { threshold: 0.1 });
+    items.forEach(i => obs.observe(i));
+  }
 
   // ---- Groomsmen page ----
   function initGroomsmen() {
@@ -893,6 +966,209 @@
 
     <footer class="gm-footer">
       <div class="gm-footer-script">Allie &amp; Dennis</div>
+      <p>December 19, 2026 &middot; San Francisco</p>
+    </footer>
+
+  </div>
+</div>
+
+
+<!-- BRIDESMAIDS PAGE -->
+<div id="bridesmaids" style="display:none;">
+  <div class="bm-page">
+
+    <div class="bm-hero">
+      <div class="bm-vines" aria-hidden="true">
+        <svg class="bm-vine-svg" viewBox="0 0 800 300" fill="none" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice">
+          <!-- Main stems -->
+          <path d="M-20 280 C100 240 180 180 280 200 C380 220 420 140 520 120 C620 100 700 140 820 80" stroke="#2D5A3D" stroke-width="2.5" fill="none"/>
+          <path d="M-20 240 C80 200 160 160 260 180 C360 200 440 120 540 100 C640 80 720 120 820 60" stroke="#1B3A28" stroke-width="1.5" fill="none"/>
+          <!-- Red accent vine -->
+          <path d="M-20 260 C120 220 200 170 300 190 C400 210 460 130 560 110 C660 90 740 130 820 70" stroke="#8B1A1A" stroke-width="1.2" fill="none" opacity=".7"/>
+          <!-- Leaves left -->
+          <ellipse cx="120" cy="230" rx="18" ry="9" fill="#2D5A3D" transform="rotate(-30 120 230)"/>
+          <ellipse cx="145" cy="215" rx="14" ry="7" fill="#3D7A50" transform="rotate(-45 145 215)"/>
+          <ellipse cx="95" cy="248" rx="12" ry="6" fill="#1B3A28" transform="rotate(-15 95 248)"/>
+          <!-- Leaves middle -->
+          <ellipse cx="350" cy="175" rx="20" ry="10" fill="#2D5A3D" transform="rotate(20 350 175)"/>
+          <ellipse cx="375" cy="158" rx="15" ry="7" fill="#3D7A50" transform="rotate(35 375 158)"/>
+          <ellipse cx="325" cy="190" rx="12" ry="6" fill="#1B3A28" transform="rotate(10 325 190)"/>
+          <!-- Red flowers -->
+          <circle cx="280" cy="195" r="5" fill="#8B1A1A"/>
+          <circle cx="277" cy="192" r="3" fill="#C1272D" opacity=".8"/>
+          <circle cx="520" cy="118" r="6" fill="#8B1A1A"/>
+          <circle cx="517" cy="115" r="3.5" fill="#C1272D" opacity=".8"/>
+          <!-- Leaves right -->
+          <ellipse cx="580" cy="108" rx="18" ry="9" fill="#2D5A3D" transform="rotate(-25 580 108)"/>
+          <ellipse cx="605" cy="95" rx="14" ry="7" fill="#3D7A50" transform="rotate(-40 605 95)"/>
+          <!-- Small botanical details -->
+          <circle cx="180" cy="185" r="3" fill="#8B1A1A" opacity=".6"/>
+          <circle cx="440" cy="128" r="2.5" fill="#8B1A1A" opacity=".6"/>
+          <circle cx="680" cy="105" r="3" fill="#8B1A1A" opacity=".6"/>
+          <!-- Root tendrils bottom -->
+          <path d="M200 300 C220 270 240 260 260 280" stroke="#1B3A28" stroke-width="1" fill="none" opacity=".5"/>
+          <path d="M400 300 C415 265 435 255 455 275" stroke="#1B3A28" stroke-width="1" fill="none" opacity=".5"/>
+          <path d="M600 300 C618 268 638 258 655 278" stroke="#8B1A1A" stroke-width="1" fill="none" opacity=".4"/>
+        </svg>
+      </div>
+      <div class="bm-hero-content">
+        <span class="bm-eyebrow">For the ones who know her best</span>
+        <div class="bm-script">The Bridesmaids</div>
+        <p class="bm-sub">Everything you need for the weekend — keep this between you.</p>
+        <!-- Botanical illustration -->
+        <div class="bm-botanical" aria-hidden="true">
+          <svg viewBox="0 0 200 180" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <!-- Central stem -->
+            <path d="M100 170 C100 130 95 100 100 60" stroke="#2D5A3D" stroke-width="2.5" fill="none"/>
+            <!-- Root system -->
+            <path d="M100 170 C85 175 75 180 65 178" stroke="#1B3A28" stroke-width="1.5" fill="none"/>
+            <path d="M100 170 C115 175 125 180 135 178" stroke="#1B3A28" stroke-width="1.5" fill="none"/>
+            <path d="M90 172 C80 180 70 185 60 182" stroke="#1B3A28" stroke-width="1" fill="none" opacity=".6"/>
+            <path d="M110 172 C120 180 130 185 140 182" stroke="#1B3A28" stroke-width="1" fill="none" opacity=".6"/>
+            <!-- Red accent roots -->
+            <path d="M95 173 C85 182 78 188 70 186" stroke="#8B1A1A" stroke-width="1" fill="none" opacity=".5"/>
+            <path d="M105 173 C115 182 122 188 130 186" stroke="#8B1A1A" stroke-width="1" fill="none" opacity=".5"/>
+            <!-- Left branch -->
+            <path d="M98 120 C80 110 65 105 50 95" stroke="#2D5A3D" stroke-width="1.8" fill="none"/>
+            <ellipse cx="50" cy="90" rx="20" ry="10" fill="#2D5A3D" transform="rotate(-20 50 90)"/>
+            <ellipse cx="35" cy="100" rx="14" ry="7" fill="#3D7A50" transform="rotate(-35 35 100)"/>
+            <ellipse cx="62" cy="80" rx="12" ry="6" fill="#1B3A28" transform="rotate(-10 62 80)"/>
+            <!-- Right branch -->
+            <path d="M102 110 C120 100 135 95 150 85" stroke="#2D5A3D" stroke-width="1.8" fill="none"/>
+            <ellipse cx="152" cy="80" rx="20" ry="10" fill="#2D5A3D" transform="rotate(20 152 80)"/>
+            <ellipse cx="167" cy="90" rx="14" ry="7" fill="#3D7A50" transform="rotate(35 167 90)"/>
+            <ellipse cx="140" cy="70" rx="12" ry="6" fill="#1B3A28" transform="rotate(10 140 70)"/>
+            <!-- Upper left branch -->
+            <path d="M99 85 C82 72 68 65 52 55" stroke="#2D5A3D" stroke-width="1.5" fill="none"/>
+            <ellipse cx="48" cy="50" rx="16" ry="8" fill="#3D7A50" transform="rotate(-25 48 50)"/>
+            <!-- Upper right branch -->
+            <path d="M101 80 C118 67 132 60 148 50" stroke="#2D5A3D" stroke-width="1.5" fill="none"/>
+            <ellipse cx="152" cy="45" rx="16" ry="8" fill="#3D7A50" transform="rotate(25 152 45)"/>
+            <!-- Central flower -->
+            <circle cx="100" cy="55" r="12" fill="#8B1A1A"/>
+            <circle cx="100" cy="55" r="8" fill="#C1272D"/>
+            <circle cx="100" cy="55" r="4" fill="#E8862F"/>
+            <!-- Petals -->
+            <ellipse cx="100" cy="40" rx="5" ry="9" fill="#8B1A1A" opacity=".7"/>
+            <ellipse cx="100" cy="70" rx="5" ry="9" fill="#8B1A1A" opacity=".7"/>
+            <ellipse cx="85" cy="55" rx="9" ry="5" fill="#8B1A1A" opacity=".7"/>
+            <ellipse cx="115" cy="55" rx="9" ry="5" fill="#8B1A1A" opacity=".7"/>
+            <!-- Small red accents -->
+            <circle cx="55" cy="92" r="4" fill="#8B1A1A" opacity=".8"/>
+            <circle cx="148" cy="82" r="4" fill="#8B1A1A" opacity=".8"/>
+            <circle cx="50" cy="48" r="3" fill="#C1272D" opacity=".7"/>
+            <circle cx="150" cy="43" r="3" fill="#C1272D" opacity=".7"/>
+            <!-- Red vine intertwined with stem -->
+            <path d="M100 150 C105 140 95 125 103 110 C108 98 94 88 102 75 C107 65 96 58 100 45" stroke="#8B1A1A" stroke-width="1" fill="none" opacity=".5"/>
+          </svg>
+        </div>
+      </div>
+      <div class="bm-vine-bottom" aria-hidden="true">
+        <svg viewBox="0 0 800 80" fill="none" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice">
+          <path d="M-20 60 C100 40 200 50 300 35 C400 20 500 40 600 30 C700 20 750 40 820 25" stroke="#2D5A3D" stroke-width="1.5" fill="none"/>
+          <path d="M-20 70 C100 50 200 60 300 45 C400 30 500 50 600 40 C700 30 750 50 820 35" stroke="#8B1A1A" stroke-width="1" fill="none" opacity=".5"/>
+          <ellipse cx="150" cy="42" rx="12" ry="6" fill="#2D5A3D" transform="rotate(-15 150 42)"/>
+          <ellipse cx="380" cy="30" rx="10" ry="5" fill="#2D5A3D" transform="rotate(10 380 30)"/>
+          <ellipse cx="620" cy="35" rx="12" ry="6" fill="#2D5A3D" transform="rotate(-20 620 35)"/>
+          <circle cx="300" cy="33" r="4" fill="#8B1A1A" opacity=".7"/>
+          <circle cx="540" cy="38" r="3" fill="#8B1A1A" opacity=".7"/>
+        </svg>
+      </div>
+    </div>
+
+    <!-- Content -->
+    <div class="bm-wrap">
+
+      <!-- Dress Code -->
+      <div class="bm-card reveal-bm">
+        <div class="bm-card-accent"></div>
+        <div class="bm-card-icon">🌿</div>
+        <h2>Dress Code</h2>
+        <p class="bm-lead">Details to follow from Allie directly.</p>
+        <p>She'll be in touch with everything you need to know. Whatever she chooses, you'll look beautiful — she has great taste.</p>
+      </div>
+
+      <!-- Timeline -->
+      <div class="bm-card reveal-bm">
+        <div class="bm-card-accent"></div>
+        <div class="bm-card-icon">🌱</div>
+        <h2>The Weekend</h2>
+
+        <div class="bm-timeline">
+
+          <div class="bm-day">
+            <div class="bm-day-label">Friday, December 18</div>
+
+            <div class="bm-event">
+              <div class="bm-event-time">7:00 PM – 10:00 PM</div>
+              <div class="bm-event-title">Rehearsal Dinner</div>
+              <div class="bm-event-detail">Komaaj Restaurant, San Francisco</div>
+              <a href="https://maps.google.com/?q=Komaaj+Restaurant+San+Francisco" target="_blank" class="bm-map-link">Get directions →</a>
+            </div>
+
+            <div class="bm-event">
+              <div class="bm-event-time">10:00 PM onwards</div>
+              <div class="bm-event-title">Optional After-Dinner Drinks</div>
+              <div class="bm-event-detail">Location TBD — stay tuned from Allie</div>
+            </div>
+
+          </div>
+
+          <div class="bm-day">
+            <div class="bm-day-label">Saturday, December 19 — Wedding Day</div>
+
+            <div class="bm-event">
+              <div class="bm-event-time">10:00 AM</div>
+              <div class="bm-event-title">Arrive at Hotel</div>
+              <div class="bm-event-detail">Hotel TBD — details to follow from Allie. Don't be late.</div>
+            </div>
+
+            <div class="bm-event">
+              <div class="bm-event-time">4:15 PM</div>
+              <div class="bm-event-title">Ceremony</div>
+              <div class="bm-event-detail">St Francis Yacht Club, 99 Yacht Rd, San Francisco</div>
+              <a href="https://maps.google.com/?q=99+Yacht+Rd,+San+Francisco,+CA+94123" target="_blank" class="bm-map-link">Get directions →</a>
+            </div>
+
+            <div class="bm-event">
+              <div class="bm-event-time">5:00 PM onwards</div>
+              <div class="bm-event-title">Reception</div>
+              <div class="bm-event-detail">Cocktails, dinner & dancing — same venue</div>
+            </div>
+
+            <div class="bm-event bm-event-highlight">
+              <div class="bm-event-time">10:00 PM onwards</div>
+              <div class="bm-event-title">After Party 🎉</div>
+              <div class="bm-event-detail">2959 Pacific Ave, San Francisco</div>
+              <a href="https://maps.google.com/?q=2959+Pacific+Ave,+San+Francisco" target="_blank" class="bm-map-link">Get directions →</a>
+            </div>
+
+          </div>
+        </div>
+      </div>
+
+      <!-- Note -->
+      <div class="bm-card reveal-bm">
+        <div class="bm-card-accent"></div>
+        <div class="bm-card-icon">🌸</div>
+        <h2>A Note from Allie</h2>
+        <p>More details will follow as the day gets closer. Any questions — go straight to Allie. This page will be updated as things are confirmed, so check back in.</p>
+        <p style="margin-top:14px;font-style:italic;opacity:.7;">Thank you for being part of the most important day of my life. I love you all. — A</p>
+      </div>
+
+    </div>
+
+    <footer class="bm-footer">
+      <div class="bm-vine-footer" aria-hidden="true">
+        <svg viewBox="0 0 400 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M0 20 C60 10 120 25 200 15 C280 5 340 20 400 12" stroke="#2D5A3D" stroke-width="1.5" fill="none" opacity=".6"/>
+          <path d="M0 28 C60 18 120 33 200 23 C280 13 340 28 400 20" stroke="#8B1A1A" stroke-width="1" fill="none" opacity=".4"/>
+          <circle cx="200" cy="14" r="4" fill="#8B1A1A" opacity=".5"/>
+          <ellipse cx="120" cy="18" rx="8" ry="4" fill="#2D5A3D" transform="rotate(-10 120 18)" opacity=".6"/>
+          <ellipse cx="280" cy="16" rx="8" ry="4" fill="#2D5A3D" transform="rotate(10 280 16)" opacity=".6"/>
+        </svg>
+      </div>
+      <div class="bm-footer-script">Allie &amp; Dennis</div>
       <p>December 19, 2026 &middot; San Francisco</p>
     </footer>
 

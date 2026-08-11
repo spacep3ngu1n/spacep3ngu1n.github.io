@@ -313,6 +313,55 @@
   #admin .empty { color: var(--ink-soft); font-style: italic; padding: 30px 0; }
   .badge-yes { color: #2a7a4e; font-weight: 600; }
   .badge-no { color: var(--ink-soft); }
+
+  /* ── GROOMSMEN PAGE ── */
+  .gm-page { min-height:100vh; background:#0D0D0D; color:#FDFCF9; font-family:'Inter',sans-serif; }
+  .gm-hero {
+    background: linear-gradient(160deg, #1a1a1a 0%, #0D0D0D 60%);
+    text-align:center; padding:80px 24px 60px; position:relative; overflow:hidden;
+    border-bottom:1px solid #C9A84C;
+  }
+  .gm-eyebrow { font-size:.68rem; letter-spacing:.28em; text-transform:uppercase; color:#C9A84C; font-weight:600; display:block; margin-bottom:16px; }
+  .gm-script { font-family:'Great Vibes',cursive; font-size:clamp(3rem,10vw,5.5rem); color:#C9A84C; line-height:1.1; margin-bottom:10px; }
+  .gm-sub { color:rgba(255,255,255,.6); font-size:.9rem; max-width:380px; margin:0 auto 32px; }
+  .gm-penguin svg { width:100px; height:auto; }
+  .gm-snowflakes { pointer-events:none; position:absolute; inset:0; overflow:hidden; }
+  .gm-snowflakes .sf { color:rgba(201,168,76,.3); }
+
+  .gm-wrap { max-width:720px; margin:0 auto; padding:60px 24px; display:flex; flex-direction:column; gap:28px; }
+
+  .gm-card {
+    background:#1a1a1a; border:1px solid #2a2a2a; border-radius:4px; padding:36px 32px;
+  }
+  .gm-card-icon { font-size:1.6rem; margin-bottom:14px; }
+  .gm-card h2 { font-family:'Fraunces',serif; font-size:1.5rem; color:#C9A84C; margin:0 0 12px; }
+  .gm-lead { font-size:1rem; font-weight:600; color:#FDFCF9; margin-bottom:10px; }
+  .gm-card p { color:rgba(255,255,255,.7); font-size:.9rem; line-height:1.7; margin:0; }
+
+  .gm-timeline { display:flex; flex-direction:column; gap:28px; margin-top:4px; }
+  .gm-day { display:flex; flex-direction:column; gap:16px; }
+  .gm-day-label {
+    font-size:.68rem; letter-spacing:.18em; text-transform:uppercase;
+    color:#C9A84C; font-weight:600; padding-bottom:10px;
+    border-bottom:1px solid #2a2a2a;
+  }
+  .gm-event {
+    padding:16px 18px; background:#111; border-radius:3px;
+    border-left:2px solid #2a2a2a;
+  }
+  .gm-event-highlight { border-left-color:#C9A84C; }
+  .gm-event-time { font-size:.72rem; letter-spacing:.08em; color:#C9A84C; text-transform:uppercase; margin-bottom:4px; }
+  .gm-event-title { font-weight:600; font-size:.95rem; margin-bottom:4px; }
+  .gm-event-detail { font-size:.85rem; color:rgba(255,255,255,.55); }
+  .gm-map-link { display:inline-block; margin-top:8px; font-size:.76rem; color:#C9A84C; text-decoration:none; letter-spacing:.04em; }
+  .gm-map-link:hover { text-decoration:underline; }
+
+  .gm-footer { text-align:center; padding:40px 24px; border-top:1px solid #2a2a2a; color:rgba(255,255,255,.4); font-size:.78rem; }
+  .gm-footer-script { font-family:'Great Vibes',cursive; font-size:2rem; color:#C9A84C; margin-bottom:8px; }
+
+  .reveal-gm { opacity:0; transform:translateY(16px); transition:opacity .7s ease, transform .7s ease; }
+  .reveal-gm.in { opacity:1; transform:none; }
+
 </style>
 </head>
 <body>
@@ -550,6 +599,7 @@
 
 <script>
   const GUEST_PW = '191226';
+  const GROOM_PW  = '1996';
   const ADMIN_PW = '191226-admin';
 
   // ---- Gate ----
@@ -561,7 +611,11 @@
   const admin    = document.getElementById('admin');
 
   function unlock(val) {
-    if (val === GUEST_PW) {
+    if (val === GROOM_PW) {
+      gate.style.display = 'none';
+      document.getElementById('groomsmen').style.display = 'block';
+      initGroomsmen();
+    } else if (val === GUEST_PW) {
       gate.style.display = 'none';
       site.style.display = 'block';
       initReveal();
@@ -667,6 +721,35 @@
   });
 
 
+  // ---- Groomsmen page ----
+  function initGroomsmen() {
+    // snowflakes
+    const container = document.getElementById('gm-snowflakes');
+    if (container) {
+      const chars = ['❄','❅','❆','✦'];
+      for (let i = 0; i < 14; i++) {
+        const el = document.createElement('span');
+        el.className = 'sf';
+        el.textContent = chars[Math.floor(Math.random()*chars.length)];
+        el.style.left = Math.random()*100+'%';
+        el.style.fontSize = (.5+Math.random()*.7)+'rem';
+        el.style.opacity = .2+Math.random()*.3;
+        el.style.animationDuration = (10+Math.random()*14)+'s';
+        el.style.animationDelay = (-Math.random()*14)+'s';
+        container.appendChild(el);
+      }
+    }
+    // reveal cards
+    const items = document.querySelectorAll('.reveal-gm');
+    if (!('IntersectionObserver' in window)) {
+      items.forEach(i => i.classList.add('in')); return;
+    }
+    const obs = new IntersectionObserver(entries => {
+      entries.forEach(en => { if (en.isIntersecting) en.target.classList.add('in'); });
+    }, { threshold: 0.1 });
+    items.forEach(i => obs.observe(i));
+  }
+
   // ---- Snowflakes ----
   (function(){
     const container = document.getElementById('snowflakes');
@@ -685,5 +768,136 @@
     }
   })();
 </script>
+
+<!-- GROOMSMEN PAGE -->
+<div id="groomsmen" style="display:none;">
+  <div class="gm-page">
+
+    <!-- Header -->
+    <div class="gm-hero">
+      <div class="gm-snowflakes" id="gm-snowflakes" aria-hidden="true"></div>
+      <span class="gm-eyebrow">Eyes only</span>
+      <div class="gm-script">The Groomsmen</div>
+      <p class="gm-sub">Everything you need for the big weekend — keep this between us.</p>
+      <div class="gm-penguin" aria-hidden="true">
+        <svg viewBox="0 0 120 160" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <!-- Tuxedo penguin -->
+          <ellipse cx="60" cy="140" rx="28" ry="10" fill="black" opacity=".2"/>
+          <!-- Flippers -->
+          <ellipse cx="32" cy="100" rx="12" ry="22" fill="#14181B" transform="rotate(-8 32 100)"/>
+          <ellipse cx="88" cy="100" rx="12" ry="22" fill="#14181B" transform="rotate(8 88 100)"/>
+          <!-- Body -->
+          <path d="M28 72 C28 28 92 28 92 72 C92 122 28 128 28 72 Z" fill="#14181B"/>
+          <!-- White belly -->
+          <path d="M42 80 C42 50 78 50 78 80 C78 118 42 122 42 80 Z" fill="#FDFCF9"/>
+          <!-- Bow tie -->
+          <path d="M50 68 L60 74 L70 68 L60 62 Z" fill="#C9A84C"/>
+          <circle cx="60" cy="68" r="3" fill="#C9A84C"/>
+          <!-- Eyes -->
+          <circle cx="50" cy="55" r="4" fill="#14181B"/>
+          <circle cx="70" cy="55" r="4" fill="#14181B"/>
+          <circle cx="51" cy="54" r="1.5" fill="white"/>
+          <circle cx="71" cy="54" r="1.5" fill="white"/>
+          <!-- Beak -->
+          <path d="M55 64 L60 70 L65 64 Z" fill="#E8862F"/>
+          <!-- Top hat -->
+          <rect x="44" y="28" width="32" height="5" rx="2" fill="#14181B"/>
+          <rect x="49" y="10" width="22" height="20" rx="2" fill="#14181B"/>
+          <!-- Hat band -->
+          <rect x="49" y="26" width="22" height="3" fill="#C9A84C"/>
+          <!-- Feet -->
+          <ellipse cx="48" cy="142" rx="10" ry="5" fill="#E8862F" transform="rotate(-5 48 142)"/>
+          <ellipse cx="72" cy="142" rx="10" ry="5" fill="#E8862F" transform="rotate(5 72 142)"/>
+        </svg>
+      </div>
+    </div>
+
+    <!-- Content -->
+    <div class="gm-wrap">
+
+      <!-- Dress Code -->
+      <div class="gm-card reveal-gm">
+        <div class="gm-card-icon">🎩</div>
+        <h2>Dress Code</h2>
+        <p class="gm-lead">Matching suits — penguin chic.</p>
+        <p>Think classic black tuxedo with white shirt and black bow tie. You're the penguins of this wedding — dress the part. Details on the specific suit to follow from Dennis directly.</p>
+      </div>
+
+      <!-- Weekend Timeline -->
+      <div class="gm-card reveal-gm">
+        <div class="gm-card-icon">📅</div>
+        <h2>The Weekend</h2>
+
+        <div class="gm-timeline">
+
+          <div class="gm-day">
+            <div class="gm-day-label">Friday, December 18</div>
+
+            <div class="gm-event">
+              <div class="gm-event-time">7:00 PM – 10:00 PM</div>
+              <div class="gm-event-title">Rehearsal Dinner</div>
+              <div class="gm-event-detail">Komaaj Restaurant, San Francisco</div>
+              <a href="https://maps.google.com/?q=Komaaj+Restaurant+San+Francisco" target="_blank" class="gm-map-link">Get directions →</a>
+            </div>
+
+            <div class="gm-event">
+              <div class="gm-event-time">10:00 PM onwards</div>
+              <div class="gm-event-title">Optional After-Dinner drinks</div>
+              <div class="gm-event-detail">Location TBD — stay tuned from Dennis</div>
+            </div>
+
+          </div>
+
+          <div class="gm-day">
+            <div class="gm-day-label">Saturday, December 19 — Wedding Day</div>
+
+            <div class="gm-event">
+              <div class="gm-event-time">10:00 AM</div>
+              <div class="gm-event-title">Arrive at Hotel</div>
+              <div class="gm-event-detail">Hotel TBD — details to follow from Dennis. Don't be late.</div>
+            </div>
+
+            <div class="gm-event">
+              <div class="gm-event-time">4:15 PM</div>
+              <div class="gm-event-title">Ceremony</div>
+              <div class="gm-event-detail">St Francis Yacht Club, 99 Yacht Rd, San Francisco</div>
+              <a href="https://maps.google.com/?q=99+Yacht+Rd,+San+Francisco,+CA+94123" target="_blank" class="gm-map-link">Get directions →</a>
+            </div>
+
+            <div class="gm-event">
+              <div class="gm-event-time">5:00 PM onwards</div>
+              <div class="gm-event-title">Reception</div>
+              <div class="gm-event-detail">Cocktails, dinner & dancing — same venue</div>
+            </div>
+
+            <div class="gm-event gm-event-highlight">
+              <div class="gm-event-time">10:00 PM onwards</div>
+              <div class="gm-event-title">After Party 🎉</div>
+              <div class="gm-event-detail">2959 Pacific Ave, San Francisco</div>
+              <a href="https://maps.google.com/?q=2959+Pacific+Ave,+San+Francisco" target="_blank" class="gm-map-link">Get directions →</a>
+            </div>
+
+          </div>
+        </div>
+      </div>
+
+      <!-- Notes -->
+      <div class="gm-card reveal-gm">
+        <div class="gm-card-icon">📝</div>
+        <h2>A Note from Dennis</h2>
+        <p>More details to follow closer to the date. Any questions — go straight to Dennis. This page will be updated as things are confirmed, so check back in.</p>
+        <p style="margin-top:14px;font-style:italic;opacity:.75;">Thanks for being part of the day. It means everything. — D</p>
+      </div>
+
+    </div>
+
+    <footer class="gm-footer">
+      <div class="gm-footer-script">Allie &amp; Dennis</div>
+      <p>December 19, 2026 &middot; San Francisco</p>
+    </footer>
+
+  </div>
+</div>
+
 </body>
 </html>
